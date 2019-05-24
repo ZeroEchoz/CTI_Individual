@@ -26,6 +26,7 @@ public class CharControl : MonoBehaviour {
     public GameObject upgradeWindow;
     public GameObject milestoneWindow;
     public GameObject notesWindow;
+    public GameObject tabs;
     
 
     [Space(10)]
@@ -188,13 +189,14 @@ public class CharControl : MonoBehaviour {
 
 
         //TURN CURSOR VISIBLE WHILE HOLDING DOWN ALT
+        /*
         if (Input.GetKey(KeyCode.LeftAlt))
         {
             Cursor.visible = true;
         } else
         {
             Cursor.visible = false;
-        }
+        }*/
         #endregion
 
 
@@ -204,6 +206,7 @@ public class CharControl : MonoBehaviour {
         ControlMap();
         UpgradeWindowControl();
         MilestoneTrackerWindow();
+        NotesWindowControl();
         if (invertGliding)
         {
             inputVal *= -1f;
@@ -617,12 +620,14 @@ public class CharControl : MonoBehaviour {
             map.SetActive(true);
             Cursor.visible = true;
             sfxControlScript.InventoryOpen();
+            tabs.SetActive(true);
         } else if (Input.GetKeyDown(KeyCode.M)
             && map.activeSelf)
         {
             map.SetActive(false);
             Cursor.visible = false;
             sfxControlScript.InventoryClose();
+            tabs.SetActive(false);
         }
     }
 
@@ -635,6 +640,7 @@ public class CharControl : MonoBehaviour {
             upgradeWindow.SetActive(true);
             sfxControlScript.InventoryOpen();
             Cursor.visible = true;
+            tabs.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.U)
           && upgradeWindow.activeSelf)
@@ -643,26 +649,29 @@ public class CharControl : MonoBehaviour {
             upgradeWindow.SetActive(false);
             sfxControlScript.InventoryClose();
             Cursor.visible = false;
+            tabs.SetActive(false);
         }
     }
 
     public void NotesWindowControl()
     {
         if (Input.GetKeyDown(KeyCode.N)
-            && !upgradeWindow.activeSelf)
+            && !notesWindow.activeSelf)
         {
             FreezeCam();
             notesWindow.SetActive(true);
             sfxControlScript.InventoryOpen();
             Cursor.visible = true;
+            tabs.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.N)
-          && upgradeWindow.activeSelf)
+          && notesWindow.activeSelf)
         {
             UnfreezeCam();
             notesWindow.SetActive(false);
             sfxControlScript.InventoryClose();
             Cursor.visible = false;
+            tabs.SetActive(false);
         }
     }
 
@@ -679,6 +688,7 @@ public class CharControl : MonoBehaviour {
             sfxControlScript.InventoryOpen();
             windowOpen = true;
             Cursor.visible = true;
+            tabs.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.K) //CLOSE
             && milestoneWindow.activeSelf)
@@ -689,6 +699,7 @@ public class CharControl : MonoBehaviour {
             sfxControlScript.InventoryClose();
             windowOpen = false;
             Cursor.visible = false;
+            tabs.SetActive(false);
         }
     }
 

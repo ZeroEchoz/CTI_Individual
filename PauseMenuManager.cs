@@ -8,6 +8,7 @@ public class PauseMenuManager : MonoBehaviour {
 
     public GameObject player;
     public GameObject pauseMenu;
+    public GameObject tabs;
     [Space(10)]
     public GameObject controlsPage;
     public Image airPage;
@@ -129,6 +130,7 @@ public class PauseMenuManager : MonoBehaviour {
             {
                 UI_Windows[i].SetActive(false);
             }
+            tabs.SetActive(false);
             player.GetComponent<CharControl>().sfxControlScript.InventoryClose();
             charControlScript.UnfreezeCam();
         }
